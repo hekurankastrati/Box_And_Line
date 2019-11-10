@@ -9,15 +9,40 @@ namespace Box_And_Line
     {
         static void Main(string[] args)
         {
+
            
-            // Worker class which will do the algorithm
-            Worker worker = new Worker();
 
-            List<Result> finalResult = worker.GetSolutions();
+            double alfa = 0;
+            double input = 0;
 
-            worker.DisplaySolutions(finalResult);
+            do
+            {
+                do
+                {
+                    Console.WriteLine("Please select Alfa number between 0, 0.1 and 0.25");
+                    Console.WriteLine("Press -1 if you want to exit.");
 
-            Console.ReadKey();
+                    input = double.Parse(Console.ReadLine());
+
+
+
+                    alfa = input;
+                } while (input != -1 && alfa != 0.0 && alfa != 0.1 && alfa != 0.25);
+
+                if (input == -1)
+                    break;
+
+
+
+                // Worker class which will do the algorithm
+                Worker worker = new Worker();
+
+                List<Result> finalResult = worker.GetSolutions();
+
+                worker.DisplaySolutions(finalResult);
+
+
+            } while (true);
         }
 
     }

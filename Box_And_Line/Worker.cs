@@ -105,7 +105,7 @@ namespace Box_And_Line
 
                 }
 
-            } while (!hasUniqueValues(numbers));
+            } while (false);
 
 
             // Prepare result to return
