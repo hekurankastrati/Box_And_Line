@@ -9,14 +9,12 @@ namespace Box_And_Line
 
         const int MAX_PARENTS = 7;
         const int MAX_ITERATIONS = 70;
-        const int NO_CITIES = 15;
+        const int NO_NUMBERS = 15;
 
         // Model Parent
         int[] Model = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
 
-        // Neighborhood matrix
-        private string[][] neighborhood;
-
+      
         double alfa = 0.25;
 
         //Random object to generate random numbers
@@ -27,27 +25,18 @@ namespace Box_And_Line
             this.random = new Random();
         }
 
-
-
-        //Method that instantiates neighborhood with correspodent distances
-        public void setNeighborhood(string[][] _neighborhood)
-        {
-            this.neighborhood = _neighborhood;
-        }
-
-
         // Main function that makes the job done
-        public Result GetSolution()
+        public List<Result> GetSolutions()
         {
 
             int current = 1;
+                   
 
-            Result bestSolution = new Result();
+            List<Result> finalSolutions = GenerateParents();
 
             List<Result> solutions = GenerateParents();
 
-            bestSolution.distance = GetLowestDistance(solutions);
-            bestSolution.cities = solutions[0].cities;
+            finalSolutions.AddRange(solutions);
 
 
             while(current <= MAX_ITERATIONS)
@@ -71,12 +60,7 @@ namespace Box_And_Line
                     Result child = CrossOver(solutions[position1], solutions[position2]);
 
                     solutions.Add(child);
-
-                    if (child.distance < bestSolution.distance)
-                    { 
-                        bestSolution.cities = child.cities;
-                        bestSolution.distance = child.distance; 
-                    }
+                    finalSolutions.Add(child);
 
                 }
 
@@ -85,50 +69,49 @@ namespace Box_And_Line
             }
 
 
-            return bestSolution;
+            return finalSolutions;
         }
 
         // Method which does tha main job of algorithm
         private Result CrossOver(Result parent1, Result parent2)
         {
-            int[] cities;
+            int[] numbers;
 
 
             // Try combinations
             // Until the array has unique values for cities
             do
             {
-                cities = new int[NO_CITIES];
+                numbers = new int[NO_NUMBERS];
 
                 //Generate a random number
                 double u = DoubleNumberBetween(0, 1 + 2 * alfa);
 
-                for (int i = 0; i < NO_CITIES; i++)
+                for (int i = 0; i < NO_NUMBERS; i++)
                 {
                     // Calculate value using formula
-                    double currentCity = (parent1.cities[i] - alfa) + u * (parent2.cities[i] - parent1.cities[i]);
+                    double currentNumber = (parent1.numbers[i] - alfa) + u * (parent2.numbers[i] - parent1.numbers[i]);
 
-                    int currentCityInt = (int)currentCity;
+                    int currentNumberInt = (int)currentNumber;
 
                     // Set bottom limit to 0
                     // And upper limit to 14 
-                    if (currentCityInt < 0)
-                        currentCityInt = 0;
-                    else if (currentCityInt > 14)
-                        currentCityInt = 14;
+                    if (currentNumberInt < 0)
+                        currentNumberInt = 0;
+                    else if (currentNumberInt > 14)
+                        currentNumberInt = 14;
 
-                    cities[i] = (int)currentCityInt;
+                    numbers[i] = (int)currentNumberInt;
 
                 }
 
-            } while (!hasUniqueValues(cities));
+            } while (!hasUniqueValues(numbers));
 
 
             // Prepare result to return
             Result result = new Result();
 
-            result.cities = cities;
-            result.distance = GetTotalDistance(cities);
+            result.numbers = numbers;
 
             return result;
         }
@@ -144,12 +127,11 @@ namespace Box_And_Line
             {
                 Result parent = new Result();
 
-                var cities = Enumerable.Range(0, 15).ToArray();
+                var numbers = Enumerable.Range(0, 15).ToArray();
 
-                cities =  cities.Shuffle(random).ToArray<int>();
+                numbers =  numbers.Shuffle(random).ToArray<int>();
 
-                parent.cities = cities;
-                parent.distance = GetTotalDistance(cities);
+                parent.numbers = numbers;
 
                 response.Add(parent);
             }
@@ -157,55 +139,17 @@ namespace Box_And_Line
             return response;
         }
 
-        // Function that return total distance of an array combination
-        private int GetTotalDistance(int[] solution)
-        {
-            var sum = 0;
-
-            //Sum distances between two adjacent cities form 0 to n-1
-            for (int i = 0; i < solution.Length - 1; i++)
-            {
-                sum += GetDistance(solution[i], solution[i + 1]);
-            }
-
-            // Add to that sum distance of last item and the  first one
-            sum += GetDistance(solution[solution.Length - 1], solution[0]);
-
-            return sum;
-        }
-
-
-        // Function that returns a distance between two points
-        private int GetDistance(int origin, int destination)
-        {
-            int distance = int.Parse(neighborhood[origin][destination]);
-            return distance;
-        }
-
-        //Function that returns lowest distance in a list
-        private int GetLowestDistance(List<Result> results)
-        {
-            int lowest = results[0].distance;
-            int size = results.Count;
-
-            for(int i=1; i<size; i++)
-            {
-                if (results[i].distance < lowest)
-                    lowest = results[i].distance;
-            }
-
-            return lowest;
-        }
+       
 
         // Function that checks if an array has unique values
-        private bool hasUniqueValues(int[] cities)
+        private bool hasUniqueValues(int[] numbers)
         {
 
-            for(int i=0; i< NO_CITIES; i++)
+            for(int i=0; i< NO_NUMBERS; i++)
             {
-                for (int j = 0; j < NO_CITIES; j++)
+                for (int j = 0; j < NO_NUMBERS; j++)
                 {
-                    if (i != j && cities[i] == cities[j])
+                    if (i != j && numbers[i] == numbers[j])
                         return false;
                 }
             }
@@ -216,9 +160,26 @@ namespace Box_And_Line
         // Function that generates a random 'Double' number between two values
         private double DoubleNumberBetween(double minValue, double maxValue)
         {
-            Random random = new Random();
+            Random random1 = new Random();
 
-            return minValue + (random.NextDouble() * (maxValue - minValue));
+            return minValue + (random1.NextDouble() * (maxValue - minValue));
+        }
+
+        // Function that displays solutions
+        public void DisplaySolutions(List<Result> solutions)
+        {
+            for (int i = 0; i < solutions.Count; i++)
+            {
+                Console.WriteLine($"Solution {i}:");
+
+                foreach(var item in solutions[i].numbers)
+                {
+                    Console.Write($"{item},");
+                }
+
+                Console.WriteLine();    
+            } 
+
         }
     }
 
