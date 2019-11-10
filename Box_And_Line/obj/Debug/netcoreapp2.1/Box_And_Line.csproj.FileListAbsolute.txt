@@ -1,0 +1,11 @@
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/obj/Debug/netcoreapp2.1/Box_And_Line.csprojAssemblyReference.cache
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/obj/Debug/netcoreapp2.1/Box_And_Line.csproj.CoreCompileInputs.cache
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/obj/Debug/netcoreapp2.1/Box_And_Line.AssemblyInfoInputs.cache
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/obj/Debug/netcoreapp2.1/Box_And_Line.AssemblyInfo.cs
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/bin/Debug/netcoreapp2.1/Box_And_Line.deps.json
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/bin/Debug/netcoreapp2.1/Box_And_Line.runtimeconfig.json
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/bin/Debug/netcoreapp2.1/Box_And_Line.runtimeconfig.dev.json
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/bin/Debug/netcoreapp2.1/Box_And_Line.dll
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/bin/Debug/netcoreapp2.1/Box_And_Line.pdb
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/obj/Debug/netcoreapp2.1/Box_And_Line.dll
+/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/obj/Debug/netcoreapp2.1/Box_And_Line.pdb
