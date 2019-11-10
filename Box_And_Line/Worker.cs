@@ -88,15 +88,19 @@ namespace Box_And_Line
             return bestSolution;
         }
 
+        // Method which does tha main job of algorithm
         private Result CrossOver(Result parent1, Result parent2)
         {
             int[] cities;
 
 
+            // Try combinations
+            // Until the array has unique values for cities
             do
             {
                 cities = new int[NO_CITIES];
 
+                //Generate a random number
                 double u = DoubleNumberBetween(0, 1 + 2 * alfa);
 
                 for (int i = 0; i < NO_CITIES; i++)
@@ -105,6 +109,7 @@ namespace Box_And_Line
                     double currentCity = (parent1.cities[i] - alfa) + u * (parent2.cities[i] - parent1.cities[i]);
 
                     int currentCityInt = (int)currentCity;
+
                     // Set bottom limit to 0
                     // And upper limit to 14 
                     if (currentCityInt < 0)
@@ -119,6 +124,7 @@ namespace Box_And_Line
             } while (!hasUniqueValues(cities));
 
 
+            // Prepare result to return
             Result result = new Result();
 
             result.cities = cities;
@@ -127,6 +133,7 @@ namespace Box_And_Line
             return result;
         }
 
+        // Function to generate parents
         public List<Result> GenerateParents()
         {
 
@@ -150,6 +157,7 @@ namespace Box_And_Line
             return response;
         }
 
+        // Function that return total distance of an array combination
         private int GetTotalDistance(int[] solution)
         {
             var sum = 0;
@@ -166,12 +174,15 @@ namespace Box_And_Line
             return sum;
         }
 
+
+        // Function that returns a distance between two points
         private int GetDistance(int origin, int destination)
         {
             int distance = int.Parse(neighborhood[origin][destination]);
             return distance;
         }
 
+        //Function that returns lowest distance in a list
         private int GetLowestDistance(List<Result> results)
         {
             int lowest = results[0].distance;
@@ -186,6 +197,7 @@ namespace Box_And_Line
             return lowest;
         }
 
+        // Function that checks if an array has unique values
         private bool hasUniqueValues(int[] cities)
         {
 
@@ -201,6 +213,7 @@ namespace Box_And_Line
             return true;
         }
 
+        // Function that generates a random 'Double' number between two values
         private double DoubleNumberBetween(double minValue, double maxValue)
         {
             Random random = new Random();

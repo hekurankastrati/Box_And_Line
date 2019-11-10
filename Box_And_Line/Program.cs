@@ -39,7 +39,7 @@ namespace Box_And_Line
 
 
 
-            // Worker class which will do the job of trial and error algorithm
+            // Worker class which will do the algorithm
             Worker worker = new Worker();
 
             // Set neighborhood matrix
