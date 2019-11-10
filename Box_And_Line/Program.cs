@@ -35,7 +35,8 @@ namespace Box_And_Line
 
 
                 // Worker class which will do the algorithm
-                Worker worker = new Worker();
+                Worker worker = new Worker(alfa);
+
 
                 List<Result> finalResult = worker.GetSolutions();
 

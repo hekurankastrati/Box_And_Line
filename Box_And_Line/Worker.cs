@@ -15,13 +15,14 @@ namespace Box_And_Line
         int[] Model = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
 
       
-        double alfa = 0.25;
+        public double alfa = 0;
 
         //Random object to generate random numbers
         public Random random;
 
-        public Worker()
+        public Worker(double _alfa)
         {
+            this.alfa = _alfa;
             this.random = new Random();
         }
 
