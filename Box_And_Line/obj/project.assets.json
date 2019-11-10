@@ -687,11 +687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/Box_And_Line.csproj",
+      "projectUniqueName": "/Users/hekurankastrati/Documents/Box_And_Line/Box_And_Line/Box_And_Line.csproj",
       "projectName": "Box_And_Line",
-      "projectPath": "/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/Box_And_Line.csproj",
+      "projectPath": "/Users/hekurankastrati/Documents/Box_And_Line/Box_And_Line/Box_And_Line.csproj",
       "packagesPath": "/Users/hekurankastrati/.nuget/packages/",
-      "outputPath": "/Users/hekurankastrati/Projects/Box_And_Line/Box_And_Line/obj",
+      "outputPath": "/Users/hekurankastrati/Documents/Box_And_Line/Box_And_Line/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
